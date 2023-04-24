@@ -10,8 +10,8 @@
     "build": "yarn tsc",
     "start": "yarn tsc && node dist/index.js",
     "dev": "ts-node-dev --respawn -- src/index.ts",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test": "jest --colors --coverage",
+    "test:watch": "yarn test --watchAll",
     "lint": "eslint"
   },
   "dependencies": {
