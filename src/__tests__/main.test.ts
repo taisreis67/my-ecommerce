@@ -4,6 +4,14 @@ import axios from 'axios';
 const url = 'http://localhost:3000';
 
 describe('Buy products', () => {
+  it('Should return error if was no products', async () => {
+    const body= {};
+
+    const response = await axios.post(`${url}/buy`, body).catch(error => error.response.data)
+
+    expect(response).toBe('No products!');
+  });
+
   it('Should to buy 3 products and returns the total order value', async () => {
     const body = {
       products: [
