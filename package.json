@@ -2,16 +2,16 @@
   "name": "my-ecommerce",
   "version": "1.0.0",
   "description": "It to study clean code and clean architecture",
-  "main": "index.ts",
+  "main": "main.ts",
   "repository": "git@github.com:taisreis67/my-ecommerce.git",
   "author": "Tais Reis",
   "license": "MIT",
   "scripts": {
     "build": "yarn tsc",
-    "start": "yarn tsc && node dist/index.js",
-    "dev": "ts-node-dev --respawn -- src/index.ts",
-    "test": "jest --coverage",
-    "test:watch": "jest --watch",
+    "start": "yarn tsc && node dist/main.js",
+    "dev": "ts-node-dev --respawn -- src/main.ts",
+    "test": "jest --colors --coverage",
+    "test:watch": "yarn test --watchAll",
     "lint": "eslint"
   },
   "dependencies": {

@@ -8,12 +8,11 @@ app.use(express.json());
 
 app.post('/buy', (req, res) => {
   const cpf = req.body.client ? req.body.client.cpf : null;
-  if(cpf && !validate(cpf)) {
-    res.status(500).send('CPF invalid!');
-  }
+  if(cpf && !validate(cpf)) res.status(500).send('CPF invalid!');
+  const products = req.body.products;
+  if(!products) res.status(500).send('No products!');
 
   let totalOrderValue = 0;
-  const products = req.body.products;
   for (const product of products) {
     let productTotalValue = product.value * product.quantity;
     let discountValue = product.discountCoupon ? (productTotalValue * product.discountCoupon) / 100 : 0;
