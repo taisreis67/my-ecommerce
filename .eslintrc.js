@@ -5,7 +5,9 @@ export default {
   },
   'extends': [
     'eslint:recommended',
-    'plugin:@typescript-eslint/recommended'
+    'plugin:@typescript-eslint/eslint-recommended',
+    'plugin:@typescript-eslint/recommended',
+    "plugin:prettier/recommended"
   ],
   'overrides': [
   ],
@@ -15,7 +17,8 @@ export default {
     'sourceType': 'module'
   },
   'plugins': [
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'prettier'
   ],
   'rules': {
     'indent': [
@@ -33,6 +36,7 @@ export default {
     'semi': [
       'error',
       'always'
-    ]
+    ],
+    'prettier/prettier': 2
   }
 };
