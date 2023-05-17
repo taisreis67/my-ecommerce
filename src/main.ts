@@ -1,5 +1,5 @@
 import express from 'express';
-import { validate } from './cpfValidation';
+import Cpf from './Cpf';
 
 const app = express();
 const port = 3000;
@@ -7,8 +7,14 @@ const port = 3000;
 app.use(express.json());
 
 app.post('/checkout', (req, res) => {
-  const cpf = req.body.cpf ?? null;
-  if(cpf && !validate(cpf)) res.status(500).send('CPF invalid!');
+  let cpf: Cpf
+
+  try {
+    cpf = new Cpf(req.body.cpf);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+
   const products = req.body.products;
   if(!products) res.status(500).send('No products!');
 

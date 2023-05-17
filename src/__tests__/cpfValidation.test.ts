@@ -1,34 +1,28 @@
 import 'jest';
-import { validate } from '../cpfValidation';
+import Cpf from '../Cpf';
 
 describe('CPF Validation function', () => {
-  it.each(['123456789', '123456789012345'])('Should return false when CPF is < 11 or > 14', (cpf) => {
-    const response = validate(cpf);
+  it('Should create a Cpf object when CPF value is valid', () => {
+    const value = '378.335.098-09';
+    const cpf = new Cpf('378.335.098-09');
 
-    expect(response).toBe(false);
+    expect(cpf).toBeDefined();
+    expect(cpf.getValue()).toBe(value);
   });
 
-  it('Should return false when CPF has equal numbers', () => {
-    const cpf = '111.111.111-11';
+  it('Should return an Error when CPF value is invalid', () => {
+    const value = '378.111.111-09';
 
-    const response = validate(cpf);
-
-    expect(response).toBe(false);
+    expect(() => new Cpf(value)).toThrow(new Error("Invalid Cpf!"));
   });
 
-  it('Should return true when CPF is valid', () => {
-    const cpf = '378.335.098-09';
-
-    const response = validate(cpf);
-
-    expect(response).toBe(true);
+  it.each(['123456789', '123456789012345'])('Should return an Error when CPF value is < 11 or > 14', (value) => {
+    expect(() => new Cpf(value)).toThrow(new Error("Invalid Cpf!"));
   });
 
-  it('Should return false when CPF is invalid', () => {
-    const cpf = '378.111.111-09';
+  it('Should return an Error when CPF value has equal numbers', () => {
+    const value = '111.111.111-11';
 
-    const response = validate(cpf);
-
-    expect(response).toBe(false);
+    expect(() => new Cpf(value)).toThrow(new Error("Invalid Cpf!"));
   });
 });
